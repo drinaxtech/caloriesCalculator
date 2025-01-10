@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Admin - Reports</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f8f9fa;
+            font-family: Arial, sans-serif;
+        }
+        .card {
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+            transition: transform 0.2s ease-in-out;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+        }
+        .card h5 {
+            font-weight: bold;
+            color: #007bff;
+        }
+        .navbar-brand {
+            font-weight: bold;
+        }
+        footer {
+            background-color: #212529;
+            color: #ffffff;
+            padding: 20px 0;
+        }
+        footer a {
+            color: #ffffff;
+            text-decoration: none;
+        }
+        footer a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#">Calculate Calories</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/dashboard}">Dashboard</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/users/logout}">Logout</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<div class="container py-5">
+    <h1 class="text-center mb-4">Admin Reports</h1>
+    <p class="text-center text-muted">Review detailed statistics and insights.</p>
+
+    <div class="row g-4">
+        <!-- Entries Report -->
+        <div class="col-md-6">
+            <div class="card p-4">
+                <h5>Entries Report</h5>
+                <p>Last 7 Days: <span class="text-primary fw-bold" th:text="${last7DaysReport.last7DaysCount}"></span></p>
+                <p>Previous Week: <span class="text-primary fw-bold" th:text="${last7DaysReport.lastWeekCount}"></span></p>
+            </div>
+        </div>
+
+        <!-- Average Calories Per User -->
+        <div class="col-md-6">
+            <div class="card p-4">
+                <h5>Average Calories Per User</h5>
+                <p class="text-success display-6" th:text="${avgCaloriesPerUser}">0.00</p>
+            </div>
+        </div>
+
+        <!-- Users Exceeding Monthly Price Limit -->
+        <div class="col-md-12">
+            <div class="card p-4">
+                <h5>Users Exceeding Monthly Price Limit</h5>
+                <ul class="list-group">
+                    <li class="list-group-item" th:each="user : ${usersExceedingPriceLimit}" th:text="${user}"></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<footer class="text-center mt-5">
+    <div class="container">
+        <p>&copy; 2025 Calculate Calories</p>
+    </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

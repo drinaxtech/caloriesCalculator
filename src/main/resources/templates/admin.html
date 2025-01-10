@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Admin Reports</title>
+</head>
+<body>
+    <h1>Admin Reports</h1>
+    <p>Total Entries: <span th:text="${reports.totalEntries}"></span></p>
+    <p>Average Calories: <span th:text="${reports.averageCalories}"></span></p>
+    <h2>Overspending Users</h2>
+    <ul>
+        <li th:each="user : ${reports.overspendingUsers}" th:text="${user.name}"></li>
+    </ul>
+</body>
+</html>
